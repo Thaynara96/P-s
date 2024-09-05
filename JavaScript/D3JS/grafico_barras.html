@@ -17,6 +17,10 @@
             stroke: black;
         }
 
+        .rotulo{
+            text-anchor: end;
+        }
+
     </style>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -34,14 +38,28 @@
                 .scaleLinear()
                 .domain([0, dados.length])
                 .range([0, altura]);
-            svg.selectAll ('.barra')
-            .data(dados)
-            .enter()
-            .append ('rect')
-            .attr('x', 0)
-            .attr('y', (d,i) => fnY(i))
-            .attr('width', (d)=>fnX(d))
-            .attr('height', fnY(1) *0.9)
+            svg
+                .selectAll ('.barra')
+                .data(dados)
+                .enter()
+                .append ('rect')
+                .classed('barra', true)
+                .attr('x', 0)
+                .attr('y', (d,i) => fnY(i))
+                .attr('width', (d)=>fnX(d))
+                .attr('height', fnY(1) *0.9)
+
+                svg.selectAll('.rotulo')
+                .data(dados)
+                .enter()
+                .append('text')
+                .classed('rotulo' , true)
+                .text((d) =>d)
+                .attr ('x', (d) => fnX(d))
+                .attr ('dx', -5)
+                .attr ('y', (d,i) => fnY(i))
+                .attr('dy', (d) =>fnY(1)*0.5)
+
 
         }
     </script>
