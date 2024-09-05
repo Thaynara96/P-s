@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File</title>
+
+    <script>
+        onload = () =>{
+            arquivos.onchange = () => {
+                arqs.innerHTML = Array.from(arquivos.files)
+                .map((f) => f.name).join('<br/>')
+            };
+
+            btnArquivos.onclick = () => {
+            arquivos.click();
+        };
+        };
+
+    
+    </script>
+
+</head>
+
+<body>
+    
+    <h1>JavaScript</h1>
+    <p>
+        <input id="arquivos" multiple type="file" style="display: none;">
+        <button id="btnArquivos">Escolher arquivo</button>
+    </p>
+
+    <p id="arqs"></p>
+</body>
+
+</html>
