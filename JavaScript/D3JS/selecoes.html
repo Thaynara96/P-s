@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+        onload = () => {
+            d3.selectAll('p').style('background-color' , 'yellow');
+            d3.select('#destaque')
+            .style('font-size' , 'large')
+            .style('font-weight' , 'bold')
+        };
+    </script>
+</head>
+
+<body>
+    
+    <h1>D3JS</h1>
+    <p id="destaque">Parágrafo em destaque</p>
+    <p>Segundo Parágrafo</p>
+    <p>Terceiro Parágrafo</p>
+
+</body>
+
+</html>
