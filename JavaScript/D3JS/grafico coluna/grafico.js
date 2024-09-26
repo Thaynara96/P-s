@@ -2,28 +2,37 @@ function grafico (parametros) {
     let svg = d3
         .select(parametros.seletor)
         .attr('width', parametros.largura + 'px')
-        .attr('heigth', parametros.altura + 'px')
+        .attr('heigth', parametros.altura + 'px');
+
+    let larguraPlotagem = parametros.largura -40;
+    let alturaPlotagem = parametros.altura -40;
+
+    let plotagem = 
+    svg.append('g')
+    .attr ('width', larguraPlotagem)
+    .attr('heigt', alturaPlotagem)
+    .attr('transform', 'translate(20,20)');
 
     let fnX = d3
         .scaleLinear()
-        .domain([0, d3.max(parametros.dados)])
-        .range([0, parametros.largura]);
+        .domain([0, parametros.dados.length])
+        .range([0,larguraPlotagem]);
     let fnY = d3
         .scaleLinear()
-        .domain([0, parametros.dados.length])
-        .range([0, parametros.altura]);   
-    svg
+        .domain([0, d3.max(parametros.dados)])
+        .range([alturaPlotagem, 0]);   
+    plotagem
         .selectAll ('.barra')
         .data(parametros.dados)
         .enter()
         .append ('rect')
         .classed('barra', true)
-        .attr('x', 0)
-        .attr('y', (d,i) => fnY(i))
-        .attr('width', (d)=>fnX(d))
-        .attr('height', fnY(1) *0.9)
+        .attr('x', (d,i) => fnX(i))
+        .attr('y', (d) => fnY(d))
+        .attr('width', (d)=>fnX(1) *0.9)
+        .attr('height', (d)=> alturaPlotagem - fnX(d));
 
-     svg
+     plotagem
         .selectAll('.rotulo')
         .data(parametros.dados)
         .enter()
