@@ -1,3 +1,4 @@
+import { AddItem } from "./Additem";
 import { TodoItem } from "./TodoItem";
 import { useState } from "react";
 
@@ -32,11 +33,20 @@ export function TodoList() {
     const [tasks, setTasks] = useState(TASK_LIST);
 
     function handleOnChange (task) {
-        const updatedList = task.map(())
+        const updatedList = task.map((t) => {
+            if (task.id === t.id){
+                t.isComplete = task.isComplete;
+            }
+
+            return t;
+        })
+
+        setTasks(updatedList);
     }
 
     return (
         <section className="task-list-container">
+            <AddItem />
             <ul>
                 {tasks.map((task) =>
                 <li key = {task.id}>
