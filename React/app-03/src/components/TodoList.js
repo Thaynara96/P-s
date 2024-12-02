@@ -31,10 +31,17 @@ const TASK_LIST =[
 export function TodoList() {
     const [tasks, setTasks] = useState(TASK_LIST);
 
+    function handleOnChange (task) {
+        const updatedList = task.map(())
+    }
+
     return (
         <section className="task-list-container">
             <ul>
-                {tasks.map((task) =><li><TodoItem task={task} /></li>)}
+                {tasks.map((task) =>
+                <li key = {task.id}>
+                    <TodoItem task={task} onCheck={handleOnChange} />
+                </li>)}
             </ul>
         </section>
     )
