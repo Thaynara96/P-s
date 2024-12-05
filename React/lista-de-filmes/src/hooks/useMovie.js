@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPopularMovies } from "../services/movies.service";
+import {getMovie, getPopularMovies } from "../services/movies.service";
 
 export function useMovies() {
     const[movies, setMovies] = useState([]);
@@ -12,4 +12,17 @@ export function useMovies() {
 
 
     return movies;
+}
+
+export function useMovie(movieId) {
+    const[movie, setMovie] = useState([]);
+
+    useEffect(() =>{
+        getMovie(movieId).then(({ data }) => {
+            setMovie(data)
+        });
+    }, [movieId]);
+
+
+    return movie;
 }
